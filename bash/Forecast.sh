@@ -1,6 +1,6 @@
 # I have taken a recent intrest in astronomy. The only problem with astronomy is that it is weather dependent.To figure out if the weather will be a good for a night of observing I use a multitude of different websites. This script will output all the information necessary for me to determine if tonights night is a good night for some observing.
 
-#GOAL: Write a script that will determin if the night is a good night for stargazing.
+# GOAL: Write a script that will determin if the night is a good night for stargazing.
 # INSTRUCTIONS: Download this file and run. wget and jq need to be installed for script to run. Current weather can only be updated every 4 hours. When script is ran it will take 4 hours before current weather will be able to fetch new weather data. Current weather will display the same data until 4 hours have passed from inital run. The current weather location is set to Cincinnati for accuracy. To change weather location from the 'url' variable delete 'Cincinnati' and it should use you location based off your IP if ran in console.
 
 # Weather URLs for corresponding locations:
