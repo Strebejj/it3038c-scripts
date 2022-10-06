@@ -5,7 +5,7 @@
 # Cincinnati, OH: http://wttr.in/Cincinnati?format=j1
 # Maysville, KY: http://wttr.in/Maysville?format=j1
 
-# Current weather can only be updated every 4 hours. If current weather does not match that is why.
+# INSTRUCTIONS: Download this file and run. wget and jq need to be installed for script to run. Current weather can only be updated every 4 hours. When script is ran it will take 4 hours before current weather will be able to fetch new weather data. Current weather will display the same data until 4 hours have passed from inital run. The current weather location is set to Cincinnati for accuracy. To change weather location Cincinnati and it should use you location based off your IP if ran in console.
 
 url="http://wttr.in/Cincinnati?format=j1"
 json="$(wget -qO- "$url")"
