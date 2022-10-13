@@ -1,7 +1,7 @@
 ﻿$IP = getIP
 $UserName = UserName
 $Hostname = hostname
-$Version = Version
+#$Version = Version
 $DayOfWeek = DayOfWeek
 $Date = Get-Date -Format "MM/dd/yyyy"
 
@@ -20,6 +20,6 @@ function UserName{
 
 
 $Report = "This machine's IP is $IP. User is $UserName. Hostname is $hostname. PowerShell 
-Version $Version. Today's Date is $DayOfWeek, $Date."
+Version Version. Today's Date is $DayOfWeek, $Date."
 
  Write-Host("$Report")
