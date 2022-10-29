@@ -1,14 +1,11 @@
-# I have taken a recent intrest in astronomy. The only problem with astronomy is that it is weather dependent.To figure out if the weather will be a good for a night of observing I use a multitude of different websites. This script will output all the information necessary for me to determine if tonights night is a good night for some observing.
-
-# GOAL: Write a script that will determin if the night is a good night for stargazing.
-# INSTRUCTIONS: Download this file and run. wget and jq need to be installed for script to run. Current weather can only be updated every 4 hours. When script is ran it will take 4 hours before current weather will be able to fetch new weather data. Current weather will display the same data until 4 hours have passed from inital run. The current weather location is set to Cincinnati for accuracy. To change weather location from the 'url' variable delete 'Cincinnati' and it should use you location based off your IP if ran in console.
+# Written by Jacob Strebel Updated 10/29/2022
 
 # Weather URLs for corresponding locations:
 # Adams County, OH: http//wttr.in/Adams+County+Ohio?format=j1
 # Cincinnati, OH: http://wttr.in/Cincinnati?format=j1
 # Maysville, KY: http://wttr.in/Maysville?format=j1
 
-url="http://wttr.in/Cincinnati?format=j1"
+url="http://wttr.in/Cincinnati?format=j1" #This is the area you change the URL with the coresponding URL.
 json="$(wget -qO- "$url")"
 
 Area=$(echo $json|jq -r ."nearest_area[0]|(.areaName[0].value)") #Area varriable I might use in the future.
@@ -20,8 +17,8 @@ TngtTemp=$(echo $json|jq -r ."weather[0]|(.hourly[7].tempF)") #Tonight tempature
 TngtDesc=$(echo $json|jq -r ."weather[0]|(.hourly[7].weatherDesc[0].value)") #Tonight description variable, gives a description of what the weather will be like at 9:00 P.M. on the day the script is ran.
 TngtCloud=$(echo $json|jq -r ."weather[0]|(.hourly[7].cloudcover)") #Tonight cloud coverage variable, tells what percent of the sky will be covered by clouds at 9:00 P.M. on the day the script is ran.
 TngtHumid=$(echo $json|jq -r ."weather[0]|(.hourly[7].humidity)") #Tonight humiditiy variable, tells what the humidity will be at 9:00 P.M. on the day the script is ran.
-TngtMoonPhase=$(echo $json|jq -r ."weather[0]|(.astronomy[0].moon_phase)")
-TngtMoonIllumination=$(echo $json|jq -r ."weather[0]|(.astronomy[0].moon_illumination)")
+TngtMoonPhase=$(echo $json|jq -r ."weather[0]|(.astronomy[0].moon_phase)") #Tonight moon phase variable, tells what the moon phase will be when it rises.
+TngtMoonIllumination=$(echo $json|jq -r ."weather[0]|(.astronomy[0].moon_illumination)") #Tonight moon illumination, tells what percent the moon will be illuminated when it rises.
 
 
 Overall=$(( 100 - 100 * ($TngtCloud + $TngtMoonIllumination / 2 + $TngtHumid / 3) / 188)) #Calculates the overall viewing quality.
@@ -42,7 +39,3 @@ echo "Currently, the weather is $CurrTemp*F and $CurrDesc. The total cloud cover
 echo "At 9:00 P.M. the forecast is $TngtTemp*F and $TngtDesc. There will be $TngtCloud% of cloud coverage and the humidity level will be $TngtHumid%."
 echo "Tonight the moon will be in the $TngtMoonPhase phase and will be $TngtMoonIllumination% illuminated."
 echo "Overall the viewing quality $Overall%. I would classify this night as $Dignify night to observe."
-
-# Overall, I feel this script automates everything I would need to know to determine if it would be a good night to observe.
-# In this phase of this project I added some variables for the moon, such as the phase and illumination as it can effect observing. I also added an if statment that alerts the user if it is a full moon or new moon.
-# In the final phase of this project I would like to add a color scale to the variable outputs and bold areas of the output to enhance readability.
