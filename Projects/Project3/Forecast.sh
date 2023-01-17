@@ -106,3 +106,4 @@ echo ""
 echo "Astronomy:"
 echo "$MoonOutcome The moon will be in the $bold$TngtMoonPhase$normal phase and will be $bold$TngtMoonIllumination%$normal illuminated."
 echo "Overall the viewing quality for tonight is $bold$Overall%$normal. I would classify this night as $bold$Dignify$normal night to observe."
+read
